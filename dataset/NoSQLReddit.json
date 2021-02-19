@@ -1,0 +1,29 @@
+{
+	"name": "NoSQLReddit",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SentimentDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Date": {
+					"type": "string"
+				},
+				"title sentiment score": {
+					"type": "number"
+				},
+				"body sentiment score": {
+					"type": "number"
+				}
+			}
+		},
+		"typeProperties": {
+			"collectionName": "APIparsedBCHreddit"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

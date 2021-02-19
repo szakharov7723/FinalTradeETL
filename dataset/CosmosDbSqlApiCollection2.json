@@ -1,0 +1,16 @@
+{
+	"name": "CosmosDbSqlApiCollection2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SentimentDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {},
+		"typeProperties": {
+			"collectionName": "testpipe"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

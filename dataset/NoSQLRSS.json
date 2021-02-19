@@ -1,0 +1,32 @@
+{
+	"name": "NoSQLRSS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SentimentDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {
+			"type": "object",
+			"properties": {
+				"link": {
+					"type": "string"
+				},
+				"date": {
+					"type": "string"
+				},
+				"body": {
+					"type": "string"
+				},
+				"sentiment score": {
+					"type": "number"
+				}
+			}
+		},
+		"typeProperties": {
+			"collectionName": "RSSparsedBCHnews"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
