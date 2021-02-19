@@ -5,7 +5,14 @@
 			{
 				"name": "Daily_price",
 				"type": "ExecuteDataFlow",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Sentiment_aggregate_compile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -29,7 +36,20 @@
 			{
 				"name": "Sentiment_aggregate_compile",
 				"type": "ExecuteDataFlow",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "RSSsentimentParser",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "RedditSentimentsParser",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -48,6 +68,46 @@
 						"computeType": "General"
 					},
 					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "RedditSentimentsParser",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/sergeyanalytics@outlook.com/ForumParse&Load"
+				},
+				"linkedServiceName": {
+					"referenceName": "Priceingestion",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "RSSsentimentParser",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/sergeyanalytics@outlook.com/NewsParse&Load"
+				},
+				"linkedServiceName": {
+					"referenceName": "Priceingestion",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
