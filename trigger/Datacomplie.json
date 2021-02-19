@@ -1,0 +1,24 @@
+{
+	"name": "Datacomplie",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Copy_RSS_from_NoSQL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 10,
+				"startTime": "2021-02-18T19:31:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

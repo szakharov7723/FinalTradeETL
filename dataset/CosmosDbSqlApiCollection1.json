@@ -1,0 +1,26 @@
+{
+	"name": "CosmosDbSqlApiCollection1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CosmosDb1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {
+			"type": "object",
+			"properties": {
+				"timestamp": {
+					"type": "string"
+				},
+				"last_trade_price": {
+					"type": "number"
+				}
+			}
+		},
+		"typeProperties": {
+			"collectionName": "BlockchainAPI_BCH"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,30 @@
+{
+	"name": "DestinationDataset_lhy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "date_pub",
+				"type": "date",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "sent_score",
+				"type": "int",
+				"precision": 10,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BCH_RSSsentiment"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
