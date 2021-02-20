@@ -2,7 +2,7 @@
 	"name": "NoSQLRSS",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SentimentDB",
+			"referenceName": "RSSnosqlconnection",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
