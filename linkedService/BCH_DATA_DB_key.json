@@ -1,0 +1,10 @@
+{
+	"name": "BCH_DATA_DB_key",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://bchsqldbkey.vault.azure.net/"
+		}
+	}
+}
