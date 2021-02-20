@@ -2,7 +2,7 @@
 	"name": "CalendarJoin",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase1",
+			"referenceName": "CalendarTable",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
