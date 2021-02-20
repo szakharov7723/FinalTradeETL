@@ -1,8 +1,8 @@
 {
-	"name": "AzureSqlTable1",
+	"name": "DailySQLconector",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase1",
+			"referenceName": "CalendarTable",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -20,7 +20,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "dailyBCHprice"
+			"table": "DailyPrice"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
