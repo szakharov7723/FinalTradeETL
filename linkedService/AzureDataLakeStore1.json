@@ -1,0 +1,17 @@
+{
+	"name": "AzureDataLakeStore1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDataLakeStore",
+		"typeProperties": {
+			"dataLakeStoreUri": "https://bchlake.azuredatalakestore.net/webhdfs/v1",
+			"tenant": "a8f0ea27-d37d-46ff-8a70-01f39b4d1b28",
+			"subscriptionId": "6c304488-2903-485c-a8bd-404858da811b",
+			"resourceGroupName": "BCH_DB"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
