@@ -1,0 +1,7 @@
+{
+	"name": "AzureDataLakeStore1",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/6c304488-2903-485c-a8bd-404858da811b/resourceGroups/BCH_DB/providers/Microsoft.DataLakeStore/accounts/bchlake",
+		"groupId": ""
+	}
+}
