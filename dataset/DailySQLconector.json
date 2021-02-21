@@ -20,7 +20,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "DailyPrice"
+			"table": "Finaldata"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
