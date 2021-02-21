@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/sergeyanalytics@outlook.com/BCH_price_streaming",
+					"notebookPath": "/ETLops/BCH_price_streaming",
 					"libraries": [
 						{
 							"pypi": {
@@ -35,7 +35,7 @@
 					]
 				},
 				"linkedServiceName": {
-					"referenceName": "Priceingestion",
+					"referenceName": "AzureDatabricks1",
 					"type": "LinkedServiceReference"
 				}
 			}
