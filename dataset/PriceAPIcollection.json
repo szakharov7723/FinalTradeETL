@@ -1,5 +1,5 @@
 {
-	"name": "CosmosDbSqlApiCollection2",
+	"name": "PriceAPIcollection",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "PriceAPI",
