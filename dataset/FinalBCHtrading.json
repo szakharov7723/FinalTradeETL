@@ -1,0 +1,41 @@
+{
+	"name": "FinalBCHtrading",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TradeDate",
+				"type": "date"
+			},
+			{
+				"name": "Sentiment1",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Sentiment2",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Sentiment3",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "BCHprice",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Finaldata"
+		}
+	}
+}
