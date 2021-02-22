@@ -7,7 +7,13 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Sentiment_aggregate_compile",
+						"activity": "RedditSentimentsParser",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "RSSsentimentParser",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -38,13 +44,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "RSSsentimentParser",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "RedditSentimentsParser",
+						"activity": "Daily_price",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -84,10 +84,6 @@
 				"userProperties": [],
 				"typeProperties": {
 					"notebookPath": "/Users/sergeyanalytics@outlook.com/ForumParse&Load"
-				},
-				"linkedServiceName": {
-					"referenceName": "Priceingestion",
-					"type": "LinkedServiceReference"
 				}
 			},
 			{
@@ -104,10 +100,6 @@
 				"userProperties": [],
 				"typeProperties": {
 					"notebookPath": "/Users/sergeyanalytics@outlook.com/NewsParse&Load"
-				},
-				"linkedServiceName": {
-					"referenceName": "Priceingestion",
-					"type": "LinkedServiceReference"
 				}
 			}
 		],
