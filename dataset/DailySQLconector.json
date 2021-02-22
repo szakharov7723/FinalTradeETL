@@ -13,7 +13,7 @@
 				"type": "date"
 			},
 			{
-				"name": "Price",
+				"name": "Last_trade_price",
 				"type": "float",
 				"precision": 15
 			}
