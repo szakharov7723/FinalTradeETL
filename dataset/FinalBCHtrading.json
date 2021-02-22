@@ -13,22 +13,12 @@
 				"type": "date"
 			},
 			{
-				"name": "Sentiment1",
-				"type": "float",
-				"precision": 15
-			},
-			{
-				"name": "Sentiment2",
-				"type": "float",
-				"precision": 15
-			},
-			{
-				"name": "Sentiment3",
-				"type": "float",
-				"precision": 15
-			},
-			{
 				"name": "BCHprice",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "FinalSentiment",
 				"type": "float",
 				"precision": 15
 			}
