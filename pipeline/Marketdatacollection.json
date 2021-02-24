@@ -109,21 +109,6 @@
 							"pypi": {
 								"package": "azure-cosmos"
 							}
-						},
-						{
-							"pypi": {
-								"package": ""
-							}
-						},
-						{
-							"pypi": {
-								"package": ""
-							}
-						},
-						{
-							"pypi": {
-								"package": ""
-							}
 						}
 					]
 				},
@@ -165,11 +150,6 @@
 						{
 							"pypi": {
 								"package": "urllib3"
-							}
-						},
-						{
-							"pypi": {
-								"package": ""
 							}
 						}
 					]
