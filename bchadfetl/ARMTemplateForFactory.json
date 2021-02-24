@@ -170,7 +170,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/sergeyanalytics@outlook.com/ForumParse&Load",
+							"notebookPath": "/ETLops/ForumParse&Load",
 							"libraries": [
 								{
 									"pypi": {
@@ -232,7 +232,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/sergeyanalytics@outlook.com/NewsParse&Load",
+							"notebookPath": "/ETLops/NewsParse&Load",
 							"libraries": [
 								{
 									"pypi": {
@@ -272,7 +272,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/dataflow1')]",
-				"[concat(variables('factoryId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]",
 				"[concat(variables('factoryId'), '/dataflows/dataflow2')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks1')]"
 			]

@@ -343,7 +343,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/sergeyanalytics@outlook.com/ForumParse&Load",
+							"notebookPath": "/ETLops/ForumParse&Load",
 							"libraries": [
 								{
 									"pypi": {
@@ -405,7 +405,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/sergeyanalytics@outlook.com/NewsParse&Load",
+							"notebookPath": "/ETLops/NewsParse&Load",
 							"libraries": [
 								{
 									"pypi": {
