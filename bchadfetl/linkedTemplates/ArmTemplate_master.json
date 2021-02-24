@@ -1,0 +1,167 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "bchadfetl"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"CalendarTable_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CalendarTable'"
+		},
+		"NosqlSentimentconnection_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'NosqlSentimentconnection'"
+		},
+		"PriceAPI_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'PriceAPI'"
+		},
+		"RSSnosqlconnection_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'RSSnosqlconnection'"
+		},
+		"Singleupload_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Singleupload'"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://bchlake.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "a8f0ea27-d37d-46ff-8a70-01f39b4d1b28"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "6c304488-2903-485c-a8bd-404858da811b"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "BCH_DB"
+		},
+		"BCH_DATA_DB_key_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://bchsqldbkey.vault.azure.net/"
+		},
+		"AzureDataLakeStore1_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/6c304488-2903-485c-a8bd-404858da811b/resourceGroups/BCH_DB/providers/Microsoft.DataLakeStore/accounts/bchlake"
+		},
+		"AzureDataLakeStore1_properties_groupId": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "bchadfetl_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"CalendarTable_connectionString": {
+						"value": "[parameters('CalendarTable_connectionString')]"
+					},
+					"Singleupload_connectionString": {
+						"value": "[parameters('Singleupload_connectionString')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureDatabricks1_accessToken": {
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"NosqlSentimentconnection_connectionString": {
+						"value": "[parameters('NosqlSentimentconnection_connectionString')]"
+					},
+					"PriceAPI_connectionString": {
+						"value": "[parameters('PriceAPI_connectionString')]"
+					},
+					"RSSnosqlconnection_connectionString": {
+						"value": "[parameters('RSSnosqlconnection_connectionString')]"
+					},
+					"BCH_DATA_DB_key_properties_typeProperties_baseUrl": {
+						"value": "[parameters('BCH_DATA_DB_key_properties_typeProperties_baseUrl')]"
+					},
+					"AzureDataLakeStore1_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureDataLakeStore1_properties_privateLinkResourceId')]"
+					},
+					"AzureDataLakeStore1_properties_groupId": {
+						"value": "[parameters('AzureDataLakeStore1_properties_groupId')]"
+					},
+					"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri')]"
+					},
+					"AzureDataLakeStore1_properties_typeProperties_tenant": {
+						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_tenant')]"
+					},
+					"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_subscriptionId')]"
+					},
+					"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_resourceGroupName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "bchadfetl_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'bchadfetl_ArmTemplate_0')]"
+			]
+		}
+	]
+}
