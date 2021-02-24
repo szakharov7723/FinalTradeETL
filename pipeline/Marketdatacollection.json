@@ -83,7 +83,53 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/sergeyanalytics@outlook.com/ForumParse&Load"
+					"notebookPath": "/Users/sergeyanalytics@outlook.com/ForumParse&Load",
+					"libraries": [
+						{
+							"pypi": {
+								"package": "pandas"
+							}
+						},
+						{
+							"pypi": {
+								"package": "datetime"
+							}
+						},
+						{
+							"pypi": {
+								"package": "psaw"
+							}
+						},
+						{
+							"pypi": {
+								"package": "nltk"
+							}
+						},
+						{
+							"pypi": {
+								"package": "azure-cosmos"
+							}
+						},
+						{
+							"pypi": {
+								"package": ""
+							}
+						},
+						{
+							"pypi": {
+								"package": ""
+							}
+						},
+						{
+							"pypi": {
+								"package": ""
+							}
+						}
+					]
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
 				}
 			},
 			{
@@ -99,7 +145,38 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/sergeyanalytics@outlook.com/NewsParse&Load"
+					"notebookPath": "/Users/sergeyanalytics@outlook.com/NewsParse&Load",
+					"libraries": [
+						{
+							"pypi": {
+								"package": "pandas"
+							}
+						},
+						{
+							"pypi": {
+								"package": "feedparser"
+							}
+						},
+						{
+							"pypi": {
+								"package": "beautifulsoup4"
+							}
+						},
+						{
+							"pypi": {
+								"package": "urllib3"
+							}
+						},
+						{
+							"pypi": {
+								"package": ""
+							}
+						}
+					]
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
