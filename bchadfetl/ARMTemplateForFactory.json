@@ -55,10 +55,6 @@
 			"type": "string",
 			"defaultValue": "BCH_DB"
 		},
-		"BCH_DATA_DB_key_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://bchsqldbkey.vault.azure.net/"
-		},
 		"AzureDataLakeStore1_properties_privateLinkResourceId": {
 			"type": "string",
 			"defaultValue": "/subscriptions/6c304488-2903-485c-a8bd-404858da811b/resourceGroups/BCH_DB/providers/Microsoft.DataLakeStore/accounts/bchlake"
@@ -665,19 +661,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BCH_DATA_DB_key')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('BCH_DATA_DB_key_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/CalendarTable')]",

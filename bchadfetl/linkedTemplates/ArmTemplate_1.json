@@ -13,40 +13,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/FinalBCHtrading')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "TradeDate",
-						"type": "date"
-					},
-					{
-						"name": "BCHprice",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "FinalSentiment",
-						"type": "float",
-						"precision": 15
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Finaldata"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/NoSQLRSS')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -272,8 +238,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/NoSQLRSS')]",
-				"[concat(variables('factoryId'), '/datasets/NoSQLReddit')]",
-				"[concat(variables('factoryId'), '/datasets/FinalBCHtrading')]"
+				"[concat(variables('factoryId'), '/datasets/NoSQLReddit')]"
 			]
 		},
 		{

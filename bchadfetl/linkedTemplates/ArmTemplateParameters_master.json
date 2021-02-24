@@ -41,9 +41,6 @@
 		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
 			"value": "BCH_DB"
 		},
-		"BCH_DATA_DB_key_properties_typeProperties_baseUrl": {
-			"value": "https://bchsqldbkey.vault.azure.net/"
-		},
 		"AzureDataLakeStore1_properties_privateLinkResourceId": {
 			"value": "/subscriptions/6c304488-2903-485c-a8bd-404858da811b/resourceGroups/BCH_DB/providers/Microsoft.DataLakeStore/accounts/bchlake"
 		},

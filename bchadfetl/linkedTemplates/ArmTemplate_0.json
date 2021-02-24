@@ -39,10 +39,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'RSSnosqlconnection'"
 		},
-		"BCH_DATA_DB_key_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://bchsqldbkey.vault.azure.net/"
-		},
 		"AzureDataLakeStore1_properties_privateLinkResourceId": {
 			"type": "string",
 			"defaultValue": "/subscriptions/6c304488-2903-485c-a8bd-404858da811b/resourceGroups/BCH_DB/providers/Microsoft.DataLakeStore/accounts/bchlake"
@@ -72,19 +68,6 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
-		{
-			"name": "[concat(parameters('factoryName'), '/BCH_DATA_DB_key')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('BCH_DATA_DB_key_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
-		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Datacomplie')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
@@ -519,6 +502,42 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "BCH_RSSsentiment"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FinalBCHtrading')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "TradeDate",
+						"type": "date"
+					},
+					{
+						"name": "BCHprice",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "FinalSentiment",
+						"type": "float",
+						"precision": 15
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Finaldata"
 				}
 			},
 			"dependsOn": [

@@ -55,10 +55,6 @@
 			"type": "string",
 			"defaultValue": "BCH_DB"
 		},
-		"BCH_DATA_DB_key_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://bchsqldbkey.vault.azure.net/"
-		},
 		"AzureDataLakeStore1_properties_privateLinkResourceId": {
 			"type": "string",
 			"defaultValue": "/subscriptions/6c304488-2903-485c-a8bd-404858da811b/resourceGroups/BCH_DB/providers/Microsoft.DataLakeStore/accounts/bchlake"
@@ -117,9 +113,6 @@
 					},
 					"RSSnosqlconnection_connectionString": {
 						"value": "[parameters('RSSnosqlconnection_connectionString')]"
-					},
-					"BCH_DATA_DB_key_properties_typeProperties_baseUrl": {
-						"value": "[parameters('BCH_DATA_DB_key_properties_typeProperties_baseUrl')]"
 					},
 					"AzureDataLakeStore1_properties_privateLinkResourceId": {
 						"value": "[parameters('AzureDataLakeStore1_properties_privateLinkResourceId')]"
