@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Sentiment_aggregate_compile",
+				"name": "BCH_data_aggregate_compile",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
