@@ -1,5 +1,5 @@
 {
-	"name": "AzureSqlTable1",
+	"name": "FinalBCHtrading",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
@@ -9,19 +9,23 @@
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "Date_price",
+				"name": "TradeDate",
 				"type": "date"
 			},
 			{
-				"name": "Price",
+				"name": "BCHprice",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "FinalSentiment",
 				"type": "float",
 				"precision": 15
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "dailyBCHprice"
+			"table": "Finaldata"
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

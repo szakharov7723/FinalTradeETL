@@ -2,18 +2,20 @@
 	"name": "DelimitedText1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "csvteststores",
+			"referenceName": "Singleupload",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileSystem": "azureml-blobstore-0bde0a32-3baa-40ad-9f86-53c5d584945c"
+				"type": "AzureBlobStorageLocation",
+				"fileName": "BCH_USD_2020-11-19_2021-02-18-CoinDesk.csv",
+				"container": "bchmigration"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
+			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": []

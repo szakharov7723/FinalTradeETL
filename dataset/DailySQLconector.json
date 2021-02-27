@@ -1,28 +1,26 @@
 {
-	"name": "AzureSqlTableprice",
+	"name": "DailySQLconector",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase1",
+			"referenceName": "CalendarTable",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "Date_time_price",
-				"type": "datetime",
-				"precision": 23,
-				"scale": 3
+				"name": "Date_price",
+				"type": "date"
 			},
 			{
-				"name": "BCH_Price",
+				"name": "Last_trade_price",
 				"type": "float",
 				"precision": 15
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "BCH_price"
+			"table": "DailyPrice"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

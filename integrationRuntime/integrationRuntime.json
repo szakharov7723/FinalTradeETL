@@ -1,0 +1,16 @@
+{
+	"name": "integrationRuntime",
+	"properties": {
+		"type": "Managed",
+		"typeProperties": {
+			"computeProperties": {
+				"location": "East US",
+				"dataFlowProperties": {
+					"computeType": "General",
+					"coreCount": 8,
+					"timeToLive": 10
+				}
+			}
+		}
+	}
+}

@@ -1,15 +1,15 @@
 {
-	"name": "CosmosDbSqlApiCollection2",
+	"name": "PriceAPIcollection",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SentimentDB",
+			"referenceName": "PriceAPI",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "CosmosDbSqlApiCollection",
 		"schema": {},
 		"typeProperties": {
-			"collectionName": "testpipe"
+			"collectionName": "TickpriceAPI_BCH"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
