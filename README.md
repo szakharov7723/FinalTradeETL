@@ -25,9 +25,9 @@ This is how pipeline looks like
  
  First we get daily data from Reddit and RSS, then we run compiling data flow
  
- In detail it looks like this
+ The data flow looks like this
  
- ![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/'ETL data flow'.PNG "ETL data flow")
+ ![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/ETL_data_flow.PNG "ETL data flow")
  
 
  Calendar table has the following schema for daily incremental load
@@ -46,7 +46,7 @@ RSSparsedBCHnews["sentiment score"]
 FROM RSSparsedBCHnews
 WHERE RSSparsedBCHnews.date  != null
 ```
-And this is the schema for Reddit data using the same logic as for RSS data
+This is the schema for Reddit data using the same logic as for RSS data
 
 ```
 SELECT APIparsedBCHnews.Date,
@@ -56,7 +56,7 @@ FROM APIparsedBCHnews
 WHERE APIparsedBCHnews.Date  != null
 ```
 
-And this is for Price
+And this schema is for Price
 ```
 SELECT TickpriceAPI_BCH.timestamp,
 TickpriceAPI_BCH.last_trade_price
