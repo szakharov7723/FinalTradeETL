@@ -5,13 +5,13 @@ The task of this project is to collect various market data for bitcoin cash cryp
 ## First let's look at our data sources and how they are getting built and updated
 
 ### Cosmos DB (NoSQL)
-  1) BCHSentimentDatabase --contains 2 tables one for RSS data and another for Reddit data
+  1) BCHSentimentDatabase --contains 2 containers one for RSS data and another for Reddit data
     b) RSS data for news analysis is parsed every day and loaded to RSSparsedBCHnews table you can view the code here https://github.com/szakharov7723/Googlenews_RSS_parser
-    c) Reddit data for community perception is parsed and loaded to APIparsedBCHreddit every day you can view the code here https://github.com/szakharov7723/Reddit_parser
-    
-  2) BCHrealtimePrice -- contains 1 table for real time price tick it triggers every 5 minutes to collect data almost real time. While in our curent project we won't analyze data by minutes this data can be used for various data science tasks to create real-time prediction models. You can view the code here https://github.com/szakharov7723/Bitcoin_cash-price-tick
+    c) Reddit data for community perception is parsed and loaded to APIparsedBCHreddit every day you can view the code here https://github.com/szakharov7723/Reddit_parser plese note currently PushshiftAPI is under development, so the results are unstable. For this document we will assume the data still comes in.
+  2) BCHrealtimePrice -- contains 1 container for real time price tick it triggers every 5 minutes to collect data almost real time. While in our curent project we won't analyze data by minutes this data can be used for various data science tasks to create real-time prediction models. You can view the code here https://github.com/szakharov7723/Bitcoin_cash-price-tick
  
 While I do realize this is very small vartiety of data source for price analysis and opportunities for prediction, I don't have that much free credits to parse and store data from Twitter, Facebook, influencial financial publishers and other influencers and perception data sources.
+
 
 ### Calendar
 
@@ -23,6 +23,13 @@ This is how pipeline looks like
 
 ![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/ETL.PNG "ETL pipeline")
  
+ First we get daily data from Reddit and RSS, then we run compiling data flow
+ 
+ In detail it looks like this
+ 
+ ![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/ETL data flow.PNG "ETL data flow")
+ 
+
  Calendar table has the following schema for daily incremental load
 
 ```
@@ -39,9 +46,41 @@ RSSparsedBCHnews["sentiment score"]
 FROM RSSparsedBCHnews
 WHERE RSSparsedBCHnews.date  != null
 ```
+And this is the schema for Reddit data using the same logic as for RSS data
 
-Since we store data in NoSQL , the data will be of string type, so next step will be changing it to date format
+```
+SELECT APIparsedBCHnews.Date,
+APIparsedBCHnews["title sentiment score"],
+APIparsedBCHnews["body sentiment score"]
+FROM APIparsedBCHnews
+WHERE APIparsedBCHnews.Date  != null
+```
+
+And this is for Price
+```
+SELECT TickpriceAPI_BCH.timestamp,
+TickpriceAPI_BCH.last_trade_price
+FROM TickpriceAPI_BCH
+WHERE TickpriceAPI_BCH.timestamp  != null
+```
+Since we store data in NoSQL , the data will be of string type, so the next step will be changing it to date format
 
 ![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/RSSscore.PNG "RSS formating")
 
-![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/Redditscore.PNG "Reddit formating")
+We will do the same transformation for RSS and price data source
+
+
+Then we aggregate data for daily statistics
+
+![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/Aggregatetransform.PNG "Reddit Aggregate")
+
+We do the same transformation for RSS and price data source
+After mentioned transformations data sources are joint into single staging table
+
+![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/Joins.PNG "Final join")
+
+And the final transformation will be aggregating our sentiments and price
+
+(mean(iifNull({sentiment score},0))+mean(iifNull({body sentiment score},0))+mean(iifNull({title sentiment score},0))) / (countIf(iifNull({sentiment score},0)!=0,1) + countIf(iifNull({body sentiment score},0)!=0,1) + countIf(iifNull({title sentiment score},0)!=0,1))
+
+
