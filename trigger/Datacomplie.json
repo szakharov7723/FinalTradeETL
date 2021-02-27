@@ -6,7 +6,7 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "Copy_RSS_from_NoSQL",
+					"referenceName": "Marketdatacollection",
 					"type": "PipelineReference"
 				}
 			}
@@ -14,10 +14,18 @@
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
-				"frequency": "Minute",
-				"interval": 10,
+				"frequency": "Day",
+				"interval": 1,
 				"startTime": "2021-02-18T19:31:00Z",
-				"timeZone": "UTC"
+				"timeZone": "UTC",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						12
+					]
+				}
 			}
 		}
 	}
