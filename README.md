@@ -74,8 +74,9 @@ Then we aggregate data for daily statistics
 
 ![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/Aggregatetransform.PNG "Reddit Aggregate")
 
-We do the same transformation for Reddit and price data source
-After mentioned transformations data sources are joint into single staging table
+We do the same transformation for Reddit and price data source.
+
+After mentioned transformations, next data sources are joint into single staging table
 
 ![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/Joins.PNG "Final join")
 
