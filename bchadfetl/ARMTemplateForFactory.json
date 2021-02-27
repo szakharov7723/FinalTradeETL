@@ -75,55 +75,17 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Daily_price",
+						"name": "BCH_data_aggregate_compile",
 						"type": "ExecuteDataFlow",
 						"dependsOn": [
-							{
-								"activity": "RedditSentimentsParser",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
 							{
 								"activity": "RSSsentimentParser",
 								"dependencyConditions": [
 									"Succeeded"
 								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "dataflow1",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"Calendar": {},
-									"sink1": {}
-								}
 							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					},
-					{
-						"name": "Sentiment_aggregate_compile",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [
 							{
-								"activity": "Daily_price",
+								"activity": "RedditSentimentsParser",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -252,8 +214,8 @@
 				"lastPublishTime": "2021-02-18T03:52:48Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/dataflow1')]",
 				"[concat(variables('factoryId'), '/dataflows/dataflow2')]",
+				"[concat(variables('factoryId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks1')]"
 			]
 		},
@@ -744,18 +706,36 @@
 			"properties": {
 				"annotations": [],
 				"runtimeState": "Stopped",
-				"pipelines": [],
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Marketdatacollection",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
 				"type": "ScheduleTrigger",
 				"typeProperties": {
 					"recurrence": {
-						"frequency": "Minute",
-						"interval": 10,
+						"frequency": "Day",
+						"interval": 1,
 						"startTime": "2021-02-18T19:31:00Z",
-						"timeZone": "UTC"
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								12
+							]
+						}
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Marketdatacollection')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Pricestreamtrigger')]",
@@ -830,58 +810,6 @@
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "PriceAPIcollection",
-								"type": "DatasetReference"
-							},
-							"name": "source1"
-						},
-						{
-							"dataset": {
-								"referenceName": "CalendarJoin",
-								"type": "DatasetReference"
-							},
-							"name": "Calendar"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "DailySQLconector",
-								"type": "DatasetReference"
-							},
-							"name": "sink1"
-						}
-					],
-					"transformations": [
-						{
-							"name": "DerivedColumn1"
-						},
-						{
-							"name": "Dailyprice"
-						},
-						{
-							"name": "Join1"
-						}
-					],
-					"script": "source(output(\n\t\tlast_trade_price as double,\n\t\ttimestamp as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: true,\n\tignoreNoFilesFound: false,\n\tformat: 'document',\n\tsystemColumns: false) ~> source1\nsource(output(\n\t\tCalendarDate as date,\n\t\tCalendarDatetime as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: 'SELECT  * FROM [dbo].[Calendar]\\nWHERE  CalendarDate = convert(date, getdate(), 1) ',\n\tformat: 'query') ~> Calendar\nsource1 derive(timestamp = toDate(timestamp)) ~> DerivedColumn1\nJoin1 aggregate(groupBy(timestamp),\n\tlast_trade_price = mean(last_trade_price)) ~> Dailyprice\nDerivedColumn1, Calendar join(timestamp == CalendarDate,\n\tjoinType:'right',\n\tbroadcast: 'auto')~> Join1\nDailyprice sink(input(\n\t\tDate_price as date,\n\t\tLast_trade_price as double\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tDate_price = timestamp,\n\t\tLast_trade_price = last_trade_price\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/PriceAPIcollection')]",
-				"[concat(variables('factoryId'), '/datasets/CalendarJoin')]",
-				"[concat(variables('factoryId'), '/datasets/DailySQLconector')]"
-			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dataflow2')]",
