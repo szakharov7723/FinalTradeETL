@@ -87,3 +87,8 @@ And the final transformation will be getting our final sentiment column by the f
 ({body sentiment score}+{title sentiment score}+{sentiment score})/3
 ```
 
+And then we feed our data to SQL table
+![image](https://user-images.githubusercontent.com/59535392/109377445-6b45d480-7899-11eb-8d64-456c9f811c25.png)
+
+
+This pipeline runs every day
