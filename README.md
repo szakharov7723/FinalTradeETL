@@ -27,7 +27,7 @@ This is how pipeline looks like
  
  In detail it looks like this
  
- ![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/ETL data flow.PNG "ETL data flow")
+ ![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/'ETL data flow'.PNG "ETL data flow")
  
 
  Calendar table has the following schema for daily incremental load
