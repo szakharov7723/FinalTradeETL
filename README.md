@@ -65,7 +65,7 @@ WHERE TickpriceAPI_BCH.timestamp  != null
 ```
 Since we store data in NoSQL , the data will be of string type, so the next step will be changing it to date format
 
-![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/RSSscore.PNG "RSS formating")
+![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/RSSscore.PNG "RSS formatting")
 
 We will do the same transformation for RSS and price data source
 
@@ -74,14 +74,16 @@ Then we aggregate data for daily statistics
 
 ![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/Aggregatetransform.PNG "Reddit Aggregate")
 
+
+
 We do the same transformation for Reddit and price data source.
 
 After mentioned transformations, next data sources are joint into single staging table
 
 ![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/Joins.PNG "Final join")
 
-And the final transformation will be aggregating our sentiments and price
-
-(mean(iifNull({sentiment score},0))+mean(iifNull({body sentiment score},0))+mean(iifNull({title sentiment score},0))) / (countIf(iifNull({sentiment score},0)!=0,1) + countIf(iifNull({body sentiment score},0)!=0,1) + countIf(iifNull({title sentiment score},0)!=0,1))
-
+And the final transformation will be getting our final sentiment column by the following expression
+```
+({body sentiment score}+{title sentiment score}+{sentiment score})/3
+```
 
