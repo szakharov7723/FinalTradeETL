@@ -3,48 +3,17 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Daily_price",
+				"name": "Sentiment_aggregate_compile",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
-					{
-						"activity": "RedditSentimentsParser",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
 					{
 						"activity": "RSSsentimentParser",
 						"dependencyConditions": [
 							"Succeeded"
 						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataflow": {
-						"referenceName": "dataflow1",
-						"type": "DataFlowReference"
 					},
-					"compute": {
-						"coreCount": 8,
-						"computeType": "General"
-					},
-					"traceLevel": "Fine"
-				}
-			},
-			{
-				"name": "Sentiment_aggregate_compile",
-				"type": "ExecuteDataFlow",
-				"dependsOn": [
 					{
-						"activity": "Daily_price",
+						"activity": "RedditSentimentsParser",
 						"dependencyConditions": [
 							"Succeeded"
 						]
