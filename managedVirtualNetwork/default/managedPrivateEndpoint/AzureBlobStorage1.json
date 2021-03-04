@@ -1,0 +1,7 @@
+{
+	"name": "AzureBlobStorage1",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/6c304488-2903-485c-a8bd-404858da811b/resourceGroups/AzureML/providers/Microsoft.Storage/storageAccounts/pipelineml6224994548",
+		"groupId": "blob"
+	}
+}
