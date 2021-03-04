@@ -1,0 +1,10 @@
+{
+	"name": "Pipelinekey",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://pipelineml2294910191.vault.azure.net/"
+		}
+	}
+}
