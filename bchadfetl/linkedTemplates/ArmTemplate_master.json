@@ -7,10 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "bchadfetl"
 		},
-		"AzureBlobStorage1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
-		},
 		"AzureDatabricks1_accessToken": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
@@ -39,21 +35,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Singleupload'"
 		},
-		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+		"AzureBlobStorage1_properties_privateLinkResourceId": {
 			"type": "string",
-			"defaultValue": "https://bchlake.azuredatalakestore.net/webhdfs/v1"
+			"defaultValue": "/subscriptions/6c304488-2903-485c-a8bd-404858da811b/resourceGroups/AzureML/providers/Microsoft.Storage/storageAccounts/pipelineml6224994548"
 		},
-		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+		"AzureBlobStorage1_properties_groupId": {
 			"type": "string",
-			"defaultValue": "a8f0ea27-d37d-46ff-8a70-01f39b4d1b28"
-		},
-		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
-			"type": "string",
-			"defaultValue": "6c304488-2903-485c-a8bd-404858da811b"
-		},
-		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
-			"type": "string",
-			"defaultValue": "BCH_DB"
+			"defaultValue": "blob"
 		},
 		"AzureDataLakeStore1_properties_privateLinkResourceId": {
 			"type": "string",
@@ -96,9 +84,6 @@
 					"Singleupload_connectionString": {
 						"value": "[parameters('Singleupload_connectionString')]"
 					},
-					"AzureBlobStorage1_connectionString": {
-						"value": "[parameters('AzureBlobStorage1_connectionString')]"
-					},
 					"AzureDatabricks1_accessToken": {
 						"value": "[parameters('AzureDatabricks1_accessToken')]"
 					},
@@ -114,23 +99,17 @@
 					"RSSnosqlconnection_connectionString": {
 						"value": "[parameters('RSSnosqlconnection_connectionString')]"
 					},
+					"AzureBlobStorage1_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureBlobStorage1_properties_privateLinkResourceId')]"
+					},
+					"AzureBlobStorage1_properties_groupId": {
+						"value": "[parameters('AzureBlobStorage1_properties_groupId')]"
+					},
 					"AzureDataLakeStore1_properties_privateLinkResourceId": {
 						"value": "[parameters('AzureDataLakeStore1_properties_privateLinkResourceId')]"
 					},
 					"AzureDataLakeStore1_properties_groupId": {
 						"value": "[parameters('AzureDataLakeStore1_properties_groupId')]"
-					},
-					"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
-						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri')]"
-					},
-					"AzureDataLakeStore1_properties_typeProperties_tenant": {
-						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_tenant')]"
-					},
-					"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
-						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_subscriptionId')]"
-					},
-					"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
-						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_resourceGroupName')]"
 					}
 				}
 			},

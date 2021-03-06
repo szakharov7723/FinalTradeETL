@@ -5,9 +5,6 @@
 		"factoryName": {
 			"value": "bchadfetl"
 		},
-		"AzureBlobStorage1_connectionString": {
-			"value": ""
-		},
 		"AzureDatabricks1_accessToken": {
 			"value": ""
 		},
@@ -29,17 +26,11 @@
 		"Singleupload_connectionString": {
 			"value": ""
 		},
-		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
-			"value": "https://bchlake.azuredatalakestore.net/webhdfs/v1"
+		"AzureBlobStorage1_properties_privateLinkResourceId": {
+			"value": "/subscriptions/6c304488-2903-485c-a8bd-404858da811b/resourceGroups/AzureML/providers/Microsoft.Storage/storageAccounts/pipelineml6224994548"
 		},
-		"AzureDataLakeStore1_properties_typeProperties_tenant": {
-			"value": "a8f0ea27-d37d-46ff-8a70-01f39b4d1b28"
-		},
-		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
-			"value": "6c304488-2903-485c-a8bd-404858da811b"
-		},
-		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
-			"value": "BCH_DB"
+		"AzureBlobStorage1_properties_groupId": {
+			"value": "blob"
 		},
 		"AzureDataLakeStore1_properties_privateLinkResourceId": {
 			"value": "/subscriptions/6c304488-2903-485c-a8bd-404858da811b/resourceGroups/BCH_DB/providers/Microsoft.DataLakeStore/accounts/bchlake"
