@@ -127,6 +127,80 @@
 					"referenceName": "AzureDatabricks1",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "ForecastMLdataops",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "BCH_data_aggregate_compile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/ETLops/AzureMLcryptofcst",
+					"libraries": [
+						{
+							"pypi": {
+								"package": "scikit-learn==0.22.1"
+							}
+						},
+						{
+							"pypi": {
+								"package": "pyodbc"
+							}
+						},
+						{
+							"pypi": {
+								"package": "azureml-core"
+							}
+						},
+						{
+							"pypi": {
+								"package": "azureml-mlflow"
+							}
+						},
+						{
+							"pypi": {
+								"package": "azureml-sdk[notebooks]"
+							}
+						},
+						{
+							"pypi": {
+								"package": "DateTime"
+							}
+						},
+						{
+							"pypi": {
+								"package": "joblib"
+							}
+						},
+						{
+							"pypi": {
+								"package": "pandas"
+							}
+						},
+						{
+							"pypi": {
+								"package": "numpy"
+							}
+						}
+					]
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": [],
