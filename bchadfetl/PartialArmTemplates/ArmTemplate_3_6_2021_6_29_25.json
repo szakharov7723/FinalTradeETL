@@ -1,0 +1,253 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "bchadfetl"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Marketdatacollection')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "BCH_data_aggregate_compile",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "RSSsentimentParser",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "RedditSentimentsParser",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow2",
+								"type": "DataFlowReference"
+							},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					},
+					{
+						"name": "RedditSentimentsParser",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/ETLops/ForumParse&Load",
+							"libraries": [
+								{
+									"pypi": {
+										"package": "pandas"
+									}
+								},
+								{
+									"pypi": {
+										"package": "datetime"
+									}
+								},
+								{
+									"pypi": {
+										"package": "psaw"
+									}
+								},
+								{
+									"pypi": {
+										"package": "nltk"
+									}
+								},
+								{
+									"pypi": {
+										"package": "azure-cosmos"
+									}
+								}
+							]
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks1",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "RSSsentimentParser",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/ETLops/NewsParse&Load",
+							"libraries": [
+								{
+									"pypi": {
+										"package": "pandas"
+									}
+								},
+								{
+									"pypi": {
+										"package": "feedparser"
+									}
+								},
+								{
+									"pypi": {
+										"package": "beautifulsoup4"
+									}
+								},
+								{
+									"pypi": {
+										"package": "urllib3"
+									}
+								}
+							]
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks1",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "ForecastMLdataops",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "BCH_data_aggregate_compile",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/ETLops/AzureMLcryptofcst",
+							"libraries": [
+								{
+									"pypi": {
+										"package": "scikit-learn==0.22.1"
+									}
+								},
+								{
+									"pypi": {
+										"package": "pyodbc"
+									}
+								},
+								{
+									"pypi": {
+										"package": "azureml-core"
+									}
+								},
+								{
+									"pypi": {
+										"package": "azureml-mlflow"
+									}
+								},
+								{
+									"pypi": {
+										"package": "azureml-sdk[notebooks]"
+									}
+								},
+								{
+									"pypi": {
+										"package": "DateTime"
+									}
+								},
+								{
+									"pypi": {
+										"package": "joblib"
+									}
+								},
+								{
+									"pypi": {
+										"package": "pandas"
+									}
+								},
+								{
+									"pypi": {
+										"package": "numpy"
+									}
+								},
+								{
+									"pypi": {
+										"package": "azure-cosmos"
+									}
+								},
+								{
+									"maven": {
+										"coordinates": "com.microsoft.azure:azure-sqldb-spark:1.0.2"
+									}
+								},
+								{
+									"pypi": {
+										"package": "azureml-interpret"
+									}
+								},
+								{
+									"pypi": {
+										"package": "pyspark"
+									}
+								},
+								{
+									"pypi": {
+										"package": "nltk"
+									}
+								}
+							]
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks1",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-02-18T03:52:48Z"
+			},
+			"dependsOn": []
+		}
+	]
+}

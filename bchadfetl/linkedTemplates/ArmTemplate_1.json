@@ -350,6 +350,31 @@
 									"pypi": {
 										"package": "numpy"
 									}
+								},
+								{
+									"pypi": {
+										"package": "azure-cosmos"
+									}
+								},
+								{
+									"maven": {
+										"coordinates": "com.microsoft.azure:azure-sqldb-spark:1.0.2"
+									}
+								},
+								{
+									"pypi": {
+										"package": "azureml-interpret"
+									}
+								},
+								{
+									"pypi": {
+										"package": "pyspark"
+									}
+								},
+								{
+									"pypi": {
+										"package": "nltk"
+									}
 								}
 							]
 						},
