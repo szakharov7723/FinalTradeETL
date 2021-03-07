@@ -6,13 +6,16 @@ In this project I show how to build data architecture of crypto trading forecast
 The task of this project is to collect market data for bitcoin cash cryptocurrency and structure it in one source for forecasting machine learning and visualization.
 
 
+
+
+
 ## First let's look at our data sources and how they are getting built and updated
 
 ### Cosmos DB (NoSQL)
-  1) BCHSentimentDatabase --contains 2 containers one for RSS data and another for Reddit data
-    a) RSS data for news analysis is parsed every day and loaded to RSSparsedBCHnews table you can view data collection script here https://github.com/szakharov7723/Googlenews_RSS_parser
-    b) Reddit data for community perception is parsed and loaded to APIparsedBCHreddit every day you can view data collection script here https://github.com/szakharov7723/Reddit_parser plese note currently PushshiftAPI is under development, so the results are unstable. For this document we will assume the data still comes in.
-  2) BCHrealtimePrice -- contains 1 container for real time price tick it triggers every 5 minutes to collect data almost real time. While in our curent project we won't analyze data by minutes this data can be used for various data science tasks to create real-time prediction models. You can view data collection script here https://github.com/szakharov7723/Bitcoin_cash-price-tick
+1. BCHSentimentDatabase —contains 2 containers one for RSS data and another for Reddit data
+    1. RSS data for news analysis is parsed and loaded to RSSparsedBCHnews table  every day you can view [data collection script here](https://github.com/szakharov7723/Googlenews_RSS_parser/blob/main/NewsParse%26Load.ipynb) 
+    2. Reddit data for community perception is parsed and loaded to APIparsedBCHreddit table every day you can view [data collection script here](https://github.com/szakharov7723/Reddit_parser/blob/main/ForumParse%26Load.ipynb) plese note currently PushshiftAPI is under development, so the results are unstable. For this document we will assume the data still comes in.
+2. BCHrealtimePrice — contains 1 container for real time price tick it triggers [data collection script](https://github.com/szakharov7723/Bitcoin_cash-price-tick/blob/main/BCH_price_streaming.ipynb) every 5 minutes to collect data almost real time. While in our curent project we won't analyze data by minutes this data can be used for various data science tasks to create real-time prediction models.
 
 
 While I do realize this is very small vartiety of data source for price analysis and opportunities for prediction, I don't have that much free credits to parse and store data from Twitter, Facebook, influencial financial publishers and other influencers and crypto metrics data sources.
@@ -35,14 +38,14 @@ This is how pipeline looks like
  ![alt text](https://github.com/szakharov7723/FinalTradeETL/blob/main/ETL_data_flow.PNG "ETL data flow")
  
 
- Calendar table has the following schema for daily incremental load
+ Calendar table has the following query for daily incremental load
 
 ```
 SELECT  * FROM [dbo].[Calendar]
 WHERE  CalendarDate = convert(date, getdate(), 1)
 ```
 
-RSS data has the following schema for data in case we decide to store variant data in our NoSQL, we also avoid null data, while it is impotant to keep track of nulls in our data, this is not a part of our task  
+RSS data has the following query for data in case we decide to store variant data in our NoSQL, we also avoid null data, while it is impotant to keep track of nulls in our data, this is not a part of our task  
 
 ```
 SELECT RSSparsedBCHnews.date,
@@ -51,7 +54,7 @@ RSSparsedBCHnews["sentiment score"]
 FROM RSSparsedBCHnews
 WHERE RSSparsedBCHnews.date  != null
 ```
-This is the schema for Reddit data using the same logic as for RSS data
+This is the query for Reddit data using the same logic as for RSS data
 
 ```
 SELECT APIparsedBCHnews.Date,
@@ -61,7 +64,7 @@ FROM APIparsedBCHnews
 WHERE APIparsedBCHnews.Date  != null
 ```
 
-And this schema is for Price
+And this query is for Price
 ```
 SELECT TickpriceAPI_BCH.timestamp,
 TickpriceAPI_BCH.last_trade_price
@@ -98,7 +101,7 @@ And then we feed our data to SQL table
 
 
 ### Azure Machine learning flow
-After we have collected all data we are now ready to feed it into our machine learning model and forecasting report
+After we have collected all data we are now ready to feed it into our [machine learning model](https://github.com/szakharov7723/AzureMLdataops/blob/main/AzureMLcryptofcst.ipynb)  and forecasting report
 Since we have pretty few data for high quality model training,  we retrain and apply best model every day to find the best forecasting solution.
 
 
@@ -109,7 +112,7 @@ we forecast daily for 2 weekss and use register time series columnn
 We use remote compute cluster to train our model and find the best one
 We create a temporary dataframe consisting of forecast price and date column generateed for 14 days starting from today
 Later we use pyodbc lib to connect to our SQL database, where we erase previous forecast data and load fresh forecast for next 14 days.
-You can find the described script for machine learning flow by the following link https://github.com/szakharov7723/AzureMLdataops/blob/main/AzureMLcryptofcst.ipynb
+You can find the described script for machine learning flow by the following link 
 
 
 ### Create Forecasting report in Tableau  
