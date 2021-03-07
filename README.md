@@ -1,7 +1,6 @@
 # FinalTradeETL
 ## The object of this project
-In this project I show how to build data architecture of crypto trading forecasting solution. This project does not have a goal to predict prices closely, it just shows a possible data architecture of such solution.
-
+This project shows a possible data architecture for price analysis and prediction. It uses cryptocurrency as an example, but it can be also applied to various forecasting solutions involving different data sources. 
 ## The task of this project
 The task of this project is to collect market data for bitcoin cash cryptocurrency and structure it in one source for forecasting machine learning and visualization.
 
