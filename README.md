@@ -107,7 +107,7 @@ Since we have pretty few data for high quality model training,  we retrain and a
 We use Service principal authentification to keep it running daily
 We created a link to our SQL datastore and use this data for training
 We train our data for forecasting models and use *normalized root mean squared error* as a primary metric
-we forecast daily for 2 weekss and use register time series columnn
+we forecast daily for 2 weekss and register time series columnn
 We use remote compute cluster to train our model and find the best one
 We create a temporary dataframe consisting of forecast price and date column generateed for 14 days starting from today
 Later we use pyodbc lib to connect to our SQL database, where we erase previous forecast data and load fresh forecast for next 14 days.
