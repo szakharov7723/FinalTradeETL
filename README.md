@@ -97,8 +97,19 @@ And the final transformation will be getting our final sentiment column by the f
 And then we feed our data to SQL table
 ![image](https://user-images.githubusercontent.com/59535392/109377445-6b45d480-7899-11eb-8d64-456c9f811c25.png)
 
-
-
+In order to avoid duplicates, and make sure our pipeline loads data as intended we can run the following check and replace SELECT with DELETE, if duplicates are found
+```
+SELECT
+    FROM [dbo].[Finaldata]
+    WHERE ID NOT IN
+    (
+        SELECT MAX(Id)
+        FROM [dbo].[Finaldata]
+        GROUP BY [TradeDate], 
+                 [BCHprice], 
+                 [FinalSentiment]
+    );
+```
 ### Azure Machine learning flow
 After we have collected all data we are now ready to feed it into our [machine learning model](https://github.com/szakharov7723/AzureMLdataops/blob/main/AzureMLcryptofcst.ipynb)  and forecasting report
 Since we have pretty few data for high quality model training,  we retrain and apply best model every day to find the best forecasting solution.
