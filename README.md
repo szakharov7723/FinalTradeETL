@@ -114,15 +114,15 @@ SELECT
 After we have collected all data we are now ready to feed it into our [machine learning model](https://github.com/szakharov7723/AzureMLdataops/blob/main/AzureMLcryptofcst.ipynb)  and forecasting report
 Since we have pretty few data for high quality model training,  we retrain and apply best model every day to find the best forecasting solution.
 
+In short:
+* We use Service principal authentification to keep it running daily
+* We created a link to our SQL datastore and use this data for training
+* We train our data for forecasting models and use *normalized root mean squared error* as a primary metric
+* we forecast daily for 2 weeks and register time series columnn
+* We use remote compute cluster to train our model and find the best one
+* We create a temporary dataframe consisting of forecast price and date column generateed for 14 days starting from today
+* Later we use pyodbc lib to connect to our SQL database, where we erase previous forecast data and load fresh forecast for next 14 days.
 
-We use Service principal authentification to keep it running daily
-We created a link to our SQL datastore and use this data for training
-We train our data for forecasting models and use *normalized root mean squared error* as a primary metric
-we forecast daily for 2 weekss and register time series columnn
-We use remote compute cluster to train our model and find the best one
-We create a temporary dataframe consisting of forecast price and date column generateed for 14 days starting from today
-Later we use pyodbc lib to connect to our SQL database, where we erase previous forecast data and load fresh forecast for next 14 days.
-You can find the described script for machine learning flow by the following link 
 
 
 ### Create Forecasting report in Tableau  
