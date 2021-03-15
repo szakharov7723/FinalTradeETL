@@ -13,7 +13,7 @@ The task of this project is to collect market data for bitcoin cash cryptocurren
 ### Cosmos DB (NoSQL)
 1. BCHSentimentDatabase —contains 2 containers one for RSS data and another for Reddit data
     1. RSS data for news analysis is parsed and loaded to RSSparsedBCHnews table  every day you can view [data collection script here](https://github.com/szakharov7723/Googlenews_RSS_parser/blob/main/NewsParse%26Load.ipynb) 
-    2. Reddit data for community perception is parsed and loaded to APIparsedBCHreddit table every day you can view [data collection script here](https://github.com/szakharov7723/Reddit_parser/blob/main/ForumParse%26Load.ipynb) plese note currently PushshiftAPI is under development, so the results are unstable. For this document we will assume the data still comes in.
+    2. Reddit data for community perception is parsed and loaded to APIparsedBCHreddit table every day you can view [data collection script here](https://github.com/szakharov7723/Reddit_parser/blob/main/ForumParse%26Load.ipynb) please note currently PushshiftAPI is under development, so the results are unstable. For this document we will assume the data still comes in.
 2. BCHrealtimePrice — contains 1 container for real time price tick it triggers [data collection script](https://github.com/szakharov7723/Bitcoin_cash-price-tick/blob/main/BCH_price_streaming.ipynb) every 5 minutes to collect data almost real time. While in our curent project we won't analyze data by minutes this data can be used for various data science tasks to create real-time prediction models.
 
 
