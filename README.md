@@ -1,10 +1,29 @@
-# FinalTradeETL
-## The object of this project
-This project shows a possible data architecture for price analysis and prediction. It uses cryptocurrency as an example, but it can be also applied to various forecasting solutions involving different data sources. 
-## The task of this project
-The task of this project is to collect market data for bitcoin cash cryptocurrency and structure it in one source for forecasting machine learning and visualization.
+# Financial-Data-ETL-Pipeline-Python-SQL
+## Cryptocurrency ETL Pipeline for Price Prediction
+This project implements an end-to-end data pipeline for collecting, processing, and storing cryptocurrency data (Bitcoin Cash) for downstream analytics, visualization, and machine learning forecasting.
+## Project Goal
+The goal of this project is to design and implement a scalable data pipeline that aggregates cryptocurrency market data, news, and social sentiment (Bitcoin Cash) into a centralized storage system (Azure Cosmos DB) for downstream analytics, visualization, and machine learning forecasting.
 
 
+
+
+## Architecture
+
+Data sources:
+- RSS feeds (crypto news)
+- Reddit API (community sentiment)
+- Real-time price API
+
+Pipeline:
+RSS / Reddit / Price APIs  
+        ↓  
+Data Extraction (Python scripts)  
+        ↓  
+Azure Cosmos DB (NoSQL)  
+        ↓  
+Data Transformation  
+        ↓  
+Analytics / Machine Learning
 
 
 
@@ -17,8 +36,14 @@ The task of this project is to collect market data for bitcoin cash cryptocurren
 2. BCHrealtimePrice — contains 1 container for real time price tick it triggers [data collection script](https://github.com/szakharov7723/Bitcoin_cash-price-tick/blob/main/BCH_price_streaming.ipynb) every 5 minutes to collect data almost real time. While in our curent project we won't analyze data by minutes this data can be used for various data science tasks to create real-time prediction models.
 
 
-While I do realize this is very small vartiety of data source for price analysis and opportunities for prediction, I don't have that much free credits to parse and store data from Twitter, Facebook, influencial financial publishers and other influencers and crypto metrics data sources.
+Current limitations:
+- Limited number of external data sources
+- No integration with Twitter / financial APIs
 
+Future improvements:
+- Add social media sentiment (Twitter, etc.)
+- Integrate financial indicators
+  
 
 ### Calendar
 
