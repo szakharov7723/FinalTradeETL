@@ -25,6 +25,18 @@ Data Transformation
         ↓  
 Analytics / Machine Learning
 
+## Pipeline Execution Strategy
+
+This project follows a modular data ingestion architecture where each data source is processed independently and stored in a centralized database (Azure Cosmos DB).
+
+Each component (RSS, Reddit, and price data ingestion) runs as a separate service and can be executed individually.
+
+The pipeline supports:
+- Independent execution of ingestion services
+- Incremental data collection
+- Near real-time processing (price data every 5 minutes)
+
+In a production environment, these services can be orchestrated using tools such as Azure Data Factory or Apache Airflow.
 
 
 ## First let's look at our data sources and how they are getting built and updated
