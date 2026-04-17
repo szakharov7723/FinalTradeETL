@@ -2,7 +2,7 @@
 ## Cryptocurrency ETL Pipeline for Price Prediction
 This project implements an end-to-end data pipeline for collecting, processing, and storing cryptocurrency data (Bitcoin Cash) for downstream analytics, visualization, and machine learning forecasting.
 ## Project Goal
-The goal of this project is to design and implement a scalable data pipeline that aggregates cryptocurrency market data, news, and social sentiment (Bitcoin Cash) into a centralized storage system (Azure Cosmos DB) for downstream analytics, visualization, and machine learning forecasting.
+The goal of this project is to design and implement a scalable data pipeline that aggregates cryptocurrency market data, news, and social sentiment into a centralized storage system (Azure Cosmos DB) for downstream analytics and predictive modeling.
 
 
 
@@ -27,16 +27,21 @@ Analytics / Machine Learning
 
 ## Pipeline Execution Strategy
 
-This project follows a modular data ingestion architecture where each data source is processed independently and stored in a centralized database (Azure Cosmos DB).
+This solution is designed as a distributed ETL system.
 
-Each component (RSS, Reddit, and price data ingestion) runs as a separate service and can be executed individually.
+Each data source is processed by an independent ingestion service:
 
-The pipeline supports:
-- Independent execution of ingestion services
-- Incremental data collection
-- Near real-time processing (price data every 5 minutes)
+- [RSS parser (news)](https://github.com/szakharov7723/Googlenews_RSS_parser)  
+- [Reddit parser (sentiment)](https://github.com/szakharov7723/Reddit_parser)  
+- [Price collector (real-time data)](https://github.com/szakharov7723/Bitcoin_cash-price-tick)  
 
-In a production environment, these services can be orchestrated using tools such as Azure Data Factory or Apache Airflow.
+Key characteristics:
+
+- Modular execution (each service runs independently)  
+- Incremental data ingestion  
+- Near real-time processing (price updates every 5 minutes)  
+
+In production, orchestration can be implemented using Azure Data Factory or Apache Airflow.
 
 
 ## First let's look at our data sources and how they are getting built and updated
