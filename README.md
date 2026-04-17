@@ -45,11 +45,11 @@ In production, orchestration can be implemented using Azure Data Factory or Apac
 
 ## Tech Stack
 
-Python (data ingestion & processing)
-Azure Cosmos DB (NoSQL storage)
-REST APIs (data sources)
-Pandas (data transformation)
-Scheduling (time-based ingestion)
+- Python (data ingestion & processing)
+- Azure Cosmos DB (NoSQL storage)
+- REST APIs (data sources)
+- Pandas (data transformation)
+- Scheduling (time-based ingestion)
 
 ## First let's look at our data sources and how they are getting built and updated
 
