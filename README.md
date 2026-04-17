@@ -227,11 +227,11 @@ git clone https://github.com/szakharov7723/AzureMLdataops
 
 ### 2. Configure environment
 
-: 'For each project:
+:'For each project:
 Install dependencies
 Set up environment variables (API keys, Cosmos DB connection string)
 '
-##Example:
+## Example:
 cd Googlenews_RSS_parser
 pip install -r requirements.txt
 
