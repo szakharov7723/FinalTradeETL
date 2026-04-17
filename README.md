@@ -49,7 +49,9 @@ Python (data ingestion & processing)
 Azure Cosmos DB (NoSQL storage)
 REST APIs (data sources)
 Pandas (data transformation)
-Scheduling (time-based ingestion)## First let's look at our data sources and how they are getting built and updated
+Scheduling (time-based ingestion)
+
+## First let's look at our data sources and how they are getting built and updated
 
 ### Cosmos DB (NoSQL)
 1. BCHSentimentDatabase —contains 2 containers one for RSS data and another for Reddit data
