@@ -43,8 +43,13 @@ Key characteristics:
 
 In production, orchestration can be implemented using Azure Data Factory or Apache Airflow.
 
+## Tech Stack
 
-## First let's look at our data sources and how they are getting built and updated
+Python (data ingestion & processing)
+Azure Cosmos DB (NoSQL storage)
+REST APIs (data sources)
+Pandas (data transformation)
+Scheduling (time-based ingestion)## First let's look at our data sources and how they are getting built and updated
 
 ### Cosmos DB (NoSQL)
 1. BCHSentimentDatabase —contains 2 containers one for RSS data and another for Reddit data
@@ -200,6 +205,69 @@ Then we connect Tableau to our SQL server and 14 day Forecating table
 ![image](https://github.com/szakharov7723/FinalTradeETL/blob/main/Forecast_report.PNG "Forecast report")
 
 
+## How to Run
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Python 3.9+
+- pip (Python package manager)
+- Access to Azure Cosmos DB (or configured connection string in project files)
+
+
+### 1. Clone repositories
+
+```bash
+git clone https://github.com/szakharov7723/Googlenews_RSS_parser
+git clone https://github.com/szakharov7723/Reddit_parser
+git clone https://github.com/szakharov7723/Bitcoin_cash-price-tick
+git clone https://github.com/szakharov7723/AzureMLdataops
+
+### 2. Configure environment
+
+For each project:
+Install dependencies
+Set up environment variables (API keys, Cosmos DB connection string)
+
+Example:
+cd Googlenews_RSS_parser
+pip install -r requirements.txt
+
+Repeat for all repositories.
+
+### 3. Run ingestion services
+
+Run each data ingestion service separately:
+
+RSS News
+cd Googlenews_RSS_parser
+python main.py
+
+Reddit Data
+cd Reddit_parser
+python main.py
+
+Price Data (real-time)
+cd Bitcoin_cash-price-tick
+python main.py
+
+### 4. Run data processing / ML
+cd AzureMLdataops
+python main.py
+
+### 5. Expected Results
+After running the pipeline:
+
+Data is stored in Azure Cosmos DB
+You will have:
+Cryptocurrency price data
+News data (RSS)
+Reddit sentiment data
+Data is ready for:
+Analysis
+Visualization
+Machine learning models
 
 
 ### This pipeline runs every day
