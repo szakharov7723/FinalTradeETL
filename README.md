@@ -215,10 +215,11 @@ Make sure you have the following installed:
 - pip (Python package manager)
 - Access to Azure Cosmos DB (or configured connection string in project files)
 
+```bash
 
 ### 1. Clone repositories
 
-```bash
+
 git clone https://github.com/szakharov7723/Googlenews_RSS_parser
 git clone https://github.com/szakharov7723/Reddit_parser
 git clone https://github.com/szakharov7723/Bitcoin_cash-price-tick
@@ -226,29 +227,29 @@ git clone https://github.com/szakharov7723/AzureMLdataops
 
 ### 2. Configure environment
 
-For each project:
+: 'For each project:
 Install dependencies
 Set up environment variables (API keys, Cosmos DB connection string)
-
-Example:
+'
+##Example:
 cd Googlenews_RSS_parser
 pip install -r requirements.txt
 
-Repeat for all repositories.
+## Repeat for all repositories.
 
 ### 3. Run ingestion services
 
-Run each data ingestion service separately:
+## Run each data ingestion service separately:
 
-RSS News
+#RSS News
 cd Googlenews_RSS_parser
 python main.py
 
-Reddit Data
+#Reddit Data
 cd Reddit_parser
 python main.py
 
-Price Data (real-time)
+#Price Data (real-time)
 cd Bitcoin_cash-price-tick
 python main.py
 
@@ -257,7 +258,7 @@ cd AzureMLdataops
 python main.py
 
 ### 5. Expected Results
-After running the pipeline:
+:'After running the pipeline:
 
 Data is stored in Azure Cosmos DB
 You will have:
@@ -268,6 +269,6 @@ Data is ready for:
 Analysis
 Visualization
 Machine learning models
-
+'
 
 ### This pipeline runs every day
