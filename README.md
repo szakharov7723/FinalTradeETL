@@ -1,6 +1,10 @@
 # Financial-Data-ETL-Pipeline-Python-SQL
+
+Distributed ETL pipeline for ingesting and processing multi-source financial data (news, social media, and market prices) to enable downstream analytics and signal detection.
+
 ## Cryptocurrency ETL Pipeline for Price Prediction
 This project implements an end-to-end data pipeline for collecting, processing, and storing cryptocurrency data (Bitcoin Cash) for downstream analytics, visualization, and machine learning forecasting.
+
 ## Project Goal
 The goal of this project is to design and implement a scalable data pipeline that aggregates cryptocurrency market data, news, and social sentiment into a centralized storage system (Azure Cosmos DB) for downstream analytics and predictive modeling.
 
