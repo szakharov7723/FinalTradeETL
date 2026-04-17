@@ -274,3 +274,23 @@ Machine learning models
 '
 
 ### This pipeline runs every day
+```
+ ### Example Output
+
+The pipeline produces structured datasets combining:
+
+- Timestamp
+- Asset price
+- News signals
+- Sentiment indicators
+
+These datasets can be used for:
+- trend analysis
+- correlation studies
+- feature engineering for ML models
+- start-ups
+
+
+
+
+
