@@ -1,6 +1,7 @@
 # Financial-Data-ETL-Pipeline-Python-SQL
 
-Distributed ETL pipeline for ingesting and processing multi-source financial data (news, social media, and market prices) to enable downstream analytics and signal detection.
+Distributed ETL pipeline for multi-source financial data ingestion (RSS, Reddit, market APIs), designed for scalable data processing and analytics.
+
 
 ## Cryptocurrency ETL Pipeline for Price Prediction
 This project implements an end-to-end data pipeline for collecting, processing, and storing cryptocurrency data (Bitcoin Cash) for downstream analytics, visualization, and machine learning forecasting.
